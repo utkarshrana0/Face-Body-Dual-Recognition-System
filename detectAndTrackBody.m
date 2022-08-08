@@ -1,12 +1,12 @@
 clear classes;
 peopleDetector = vision.PeopleDetector(); % Finds faces by default
 tracker = MultiObjectTrackerKLT;
-%% Get a frame for frame-size information
+% Get a frame for frame-size information
 frame = snapshot(vidObj);
 frameSize = size(frame);
-%% Create a video player instance
+% Create a video player instance
 videoPlayer  = vision.VideoPlayer('Position',[200 100 fliplr(frameSize(1:2)+30)]);
-%% Iterate until we have successfully detected a face
+% Iterate until we have successfully detected a face
 bboxes = [];
 while isempty(bboxes)
     framergb = snapshot(vidObj);
@@ -15,7 +15,7 @@ while isempty(bboxes)
 end
 tracker.addDetections(frame, bboxes);
 
-%% And loop until the player is closed
+% And loop until the player is closed
 frameNumber = 0;
 keepRunning = true;
 disp('Press Ctrl-C to exit...');
@@ -24,7 +24,6 @@ framergb = snapshot(vidObj);
     frame = rgb2gray(framergb);
 if mod(frameNumber, 10) == 0
         % (Re)detect faces.
-        %
         % NOTE: face detection is more expensive than imresize; we can
         % speed up the implementation by reacquiring faces using a
         % downsampled frame:
@@ -45,5 +44,5 @@ if mod(frameNumber, 10) == 0
     
     frameNumber = frameNumber + 1;
 end
-%% Clean up
+% Clean up
 release(videoPlayer);
