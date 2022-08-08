@@ -1,5 +1,5 @@
 clear classes;
-%% Instantiate video device, face detector, and KLT object tracker
+% Instantiate video device, face detector, and KLT object tracker
 vidObj = webcam;
 faceDetector = vision.CascadeObjectDetector(); % Finds faces by default
 tracker = MultiObjectTrackerKLT;
