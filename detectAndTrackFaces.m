@@ -26,7 +26,6 @@ while keepRunning
     frame = rgb2gray(framergb);
 if mod(frameNumber, 10) == 0
         % (Re)detect faces.
-        %
         % NOTE: face detection is more expensive than imresize; we can
         % speed up the implementation by reacquiring faces using a
         % downsampled frame:
